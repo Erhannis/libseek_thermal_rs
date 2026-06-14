@@ -1,0 +1,1 @@
+BINDGEN_EXTRA_CLANG_ARGS=$'-I/usr/include/opencv4' cargo build
