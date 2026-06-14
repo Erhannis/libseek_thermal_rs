@@ -16,6 +16,13 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("wrapper.hpp")
+        // .allowlist_file(".*/wrapper.hpp")
+        // .allowlist_file(".*/seek.h")
+        // .allowlist_file(".*/SeekThermal.h")
+        // .allowlist_file(".*/SeekThermalPro.h")
+        .allowlist_function(".*init_cam.*")
+        .allowlist_function(".*convertToGreyScale.*")
+        .blocklist_file(".*/opencv2/opencv.hpp")
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
@@ -29,4 +36,5 @@ fn main() {
     bindings
         .write_to_file(out_path.join("bindings.rs"))
         .expect("Couldn't write bindings!");
+    println!("out: {:?}", out_path);
 }
