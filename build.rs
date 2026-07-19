@@ -16,13 +16,14 @@ fn main() {
         // The input header we would like to generate
         // bindings for.
         .header("wrapper.hpp")
+        .opaque_type("SeekCam")
+        .allowlist_recursively(false)
+        .allowlist_file(".*/SeekCamCWrapper.h")
         // .allowlist_file(".*/wrapper.hpp")
         // .allowlist_file(".*/seek.h")
         // .allowlist_file(".*/SeekThermal.h")
         // .allowlist_file(".*/SeekThermalPro.h")
-        .allowlist_function(".*init_cam.*")
-        .allowlist_function(".*convertToGreyScale.*")
-        .blocklist_file(".*/opencv2/opencv.hpp")
+        .blocklist_file(".*/opencv2/.*")
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
